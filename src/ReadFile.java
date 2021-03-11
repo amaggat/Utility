@@ -30,7 +30,7 @@ public class ReadFile {
             String nextLine = scanner.nextLine();
 
             try {
-                File myObj = new File(dir + "\\" + nextLine + "\\" + nextLine + ".txt");
+                File myObj = new File(dir + "\\" + nextLine + ".txt");
                 Scanner myReader = new Scanner(myObj);
                 while (myReader.hasNextLine()) {
                     String line = myReader.nextLine();
@@ -44,7 +44,7 @@ public class ReadFile {
             }
 
             try {
-                FileWriter myWriter = new FileWriter(dir + "\\" + nextLine + "\\data" + nextLine + ".txt");
+                FileWriter myWriter = new FileWriter(dir + "\\data" + nextLine + ".txt");
                 for(String str : data) {
                     myWriter.write(str + "\n");
                 }
