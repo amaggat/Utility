@@ -38,7 +38,7 @@ public class ReadEachFile {
             try {
                 FileWriter myWriter = new FileWriter(nextLine + "_data.txt");
                 for (String str : data) {
-                    myWriter.write(str + "\n");
+                    myWriter.write(str.toLowerCase() + "\n");
                 }
                 System.out.println("Done Write");
                 myWriter.close();

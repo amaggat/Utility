@@ -43,7 +43,7 @@ public class ReadFileInSeperatedFolder {
             try {
                 FileWriter myWriter = new FileWriter(dir + "\\" + nextLine + "\\data" + nextLine + ".txt");
                 for (String str : data) {
-                    myWriter.write(str + "\n");
+                    myWriter.write(str.toLowerCase() + "\n");
                 }
                 System.out.println("Done Write");
                 myWriter.close();
