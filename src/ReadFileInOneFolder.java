@@ -1,16 +1,13 @@
-import com.sun.org.apache.xerces.internal.impl.xs.SchemaNamespaceSupport;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReadFile {
+public class ReadFileInOneFolder {
 
     public static void main(String[] args) {
 
