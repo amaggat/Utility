@@ -16,6 +16,9 @@ public class ReadFileInSeperatedFolder {
         Scanner input = new Scanner(System.in);
         String dir = input.nextLine();
 
+        System.out.print("Dir to Print: ");
+        String output = input.nextLine();
+
 
         while (true) {
 
@@ -41,7 +44,7 @@ public class ReadFileInSeperatedFolder {
             }
 
             try {
-                FileWriter myWriter = new FileWriter(dir + "\\" + nextLine + "\\data" + nextLine + ".txt");
+                FileWriter myWriter = new FileWriter(output + "\\data" + nextLine + ".txt");
                 for (String str : data) {
                     myWriter.write(str.toLowerCase() + "\n");
                 }
