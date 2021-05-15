@@ -27,13 +27,14 @@ public class Set {
             String category = returnCategory(item);
 
             //Change the URL with any other publicly accessible POST resource, which accepts JSON request body
-            HttpURLConnection con = setConnection();
+            HttpURLConnection con = setConnection("http://localhost:9090/engines/pcrs_change/events");
 
             //JSON String need to be constructed for the specific resource.
             //We may construct complex JSON using any third-party JSON libraries such as jackson or org.json
             String jsonInputString = toJson(item, category);
             System.out.println(jsonInputString);
             doPost(con, jsonInputString);
+            outJsonResponse(con);
         }
     }
 
@@ -73,19 +74,10 @@ public class Set {
 
         int code = con.getResponseCode();
         System.out.println(code);
-
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"))){
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
-            }
-            System.out.println(response.toString());
-        }
     }
 
-    public static HttpURLConnection setConnection() throws IOException {
-        URL url = new URL ("http://localhost:9090/engines/pcrs_change/events");
+    public static HttpURLConnection setConnection(String path) throws IOException {
+        URL url = new URL (path);
 
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod("POST");
@@ -127,4 +119,16 @@ public class Set {
         return category;
     }
 
+    public static void outJsonResponse(HttpURLConnection con) {
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"))){
+            StringBuilder response = new StringBuilder();
+            String responseLine = null;
+            while ((responseLine = br.readLine()) != null) {
+                response.append(responseLine.trim());
+            }
+            System.out.println(response.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

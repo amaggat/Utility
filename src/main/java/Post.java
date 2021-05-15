@@ -23,7 +23,7 @@ public class Post {
         List<String> passwordList = load("D:\\ProjectF\\Utility\\resource\\pass.txt");
         List<String> itemList = load("D:\\ProjectF\\Utility\\resource\\item_id");
         List<String> actionList = load("D:\\ProjectF\\Utility\\resource\\action");
-        int max = 100000;
+        int max = 200000;
 
         for(int index = 0 ; index < max; ++index) {
             int x = Math.abs(new Random().nextInt());
@@ -32,7 +32,7 @@ public class Post {
             String action = actionList.get(x%8);
 
             //Change the URL with any other publicly accessible POST resource, which accepts JSON request body
-            HttpURLConnection con = Set.setConnection();
+            HttpURLConnection con = Set.setConnection("http://localhost:9090/engines/pcrs_change/events");
 
             //JSON String need to be constructed for the specific resource.
             //We may construct complex JSON using any third-party JSON libraries such as jackson or org.json

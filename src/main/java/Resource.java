@@ -4,7 +4,7 @@ import java.util.List;
 public class Resource {
 
     public static final List<String> intel_1151_cpu_category = Arrays.asList("intel-i3-8", "intel-i3-9", "intel-i5-8", "intel-i5-9", "intel-i7-8", "intel-i7-9");
-    public static final List<String> intel_1151_main_category = Arrays.asList("z370", "h310", "b365", "maximus-x-", "maximus-xi-", "b365", "z390");
+    public static final List<String> intel_1151_main_category = Arrays.asList("z370", "h310", "b365", "maximus-x-", "maximus-xi-", "b365", "z390", "b360");
     public static final List<String> intel_1200_cpu_category = Arrays.asList("intel-i3-10", "intel-i5-10",  "intel-i7-10",  "intel-i9-10");
     public static final List<String> intel_1200_main_category = Arrays.asList("h410", "z490", "b460", "maximus-xii-", "z470");
     public static final List<String> amd_cpu_category = Arrays.asList("amd");
