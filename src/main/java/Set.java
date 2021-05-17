@@ -1,17 +1,13 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class Set {
     public static void main (String []args) throws IOException, ParseException {
@@ -27,7 +23,7 @@ public class Set {
             String category = returnCategory(item);
 
             //Change the URL with any other publicly accessible POST resource, which accepts JSON request body
-            HttpURLConnection con = setConnection("http://localhost:9090/engines/pcrs_change/events");
+            HttpURLConnection con = setPostConnection("http://localhost:9090/engines/pcrs/events");
 
             //JSON String need to be constructed for the specific resource.
             //We may construct complex JSON using any third-party JSON libraries such as jackson or org.json
@@ -76,11 +72,35 @@ public class Set {
         System.out.println(code);
     }
 
-    public static HttpURLConnection setConnection(String path) throws IOException {
+    public static void doGet(HttpURLConnection con) throws IOException {
+        try(InputStream os = con.getInputStream()){
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int code = con.getResponseCode();
+        System.out.println(code);
+    }
+
+    public static HttpURLConnection setPostConnection(String path) throws IOException {
         URL url = new URL (path);
 
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod("POST");
+
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("Accept", "application/json");
+
+        con.setDoOutput(true);
+        return con;
+    }
+
+    public static HttpURLConnection setGetConnection(String path) throws IOException {
+        URL url = new URL (path);
+
+        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+        con.setRequestMethod("GET");
 
         con.setRequestProperty("Content-Type", "application/json");
         con.setRequestProperty("Accept", "application/json");
@@ -107,12 +127,12 @@ public class Set {
             category = "\"nvidia\", " + "\"gpu\"";
         } else if (ifContain(Resource.amd_gpu_category, item)) {
             category = "\"amd\", " + "\"gpu\"";
-        } else if (ifContain(Resource.psu_category, item)) {
-            category = "\"psu\"";
         } else if (ifContain(Resource.ssd_category, item)) {
             category = "\"ssd\"";
         } else if (ifContain(Resource.hdd_category, item)) {
             category = "\"hdd\"";
+        } else if (ifContain(Resource.psu_category, item) && !item.contains("-2x")) {
+            category = "\"psu\"";
         } else {
             category = "\"ram\"";
         }

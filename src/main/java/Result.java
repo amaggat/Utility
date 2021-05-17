@@ -13,4 +13,12 @@ public class Result {
     public void setResult(List<ReccomendModel> result) {
         this.result = result;
     }
+
+    public static void main(String[] args) {
+        double avg = 3.41231235;
+        avg = avg*100;
+        avg = (double)((int) avg);
+        avg = avg /100;
+        System.out.println(((double)((int) avg * 100)) / 100);
+    }
 }

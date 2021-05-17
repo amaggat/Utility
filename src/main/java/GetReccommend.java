@@ -11,7 +11,7 @@ public class GetReccommend {
     public static void main(String[] args) throws IOException {
 
 
-        HttpURLConnection con = Set.setConnection("http://localhost:9090/engines/pcrs_change/queries");
+        HttpURLConnection con = Set.setPostConnection("http://localhost:9090/engines/pcrs_change/queries");
         String jsonInputString = toJsonStringUse(null,null,"cpu",null);
         System.out.println(jsonInputString);
         Set.doPost(con, jsonInputString);
