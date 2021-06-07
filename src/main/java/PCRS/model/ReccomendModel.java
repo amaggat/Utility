@@ -1,3 +1,5 @@
+package PCRS.model;
+
 public class ReccomendModel {
 
     private String item = new String();

@@ -1,3 +1,6 @@
+package PCRS;
+
+import PCRS.model.Resource;
 import javafx.util.Pair;
 
 import java.io.BufferedReader;
@@ -14,17 +17,17 @@ public class Post {
 
     public static void main (String []args) throws IOException, ParseException {
 
-        List<String> usernameList = load("D:\\ProjectF\\Utility\\resource\\name.txt");
-        List<String> passwordList = load("D:\\ProjectF\\Utility\\resource\\pass.txt");
-        List<String> itemList = load("D:\\ProjectF\\Utility\\resource\\item_id");
-        List<String> actionList = load("D:\\ProjectF\\Utility\\resource\\action");
-        int max = 2000;
+        List<String> usernameList = load("D:\\Utility\\resource\\name.txt");
+        List<String> passwordList = load("D:\\Utility\\resource\\pass.txt");
+        List<String> itemList = load("D:\\Utility\\resource\\item_id");
+        List<String> actionList = load("D:\\Utility\\resource\\action");
+        int max = 100000;
 
         for(int index = 0 ; index < max; ++index) {
             int x = Math.abs(new Random().nextInt());
             int userid = (x%2419)+1;
             String item = itemList.get(x%562);
-            String action = actionList.get(x%3);
+            String action = actionList.get(x%8);
             Integer retailer = x%3 +1;
 
             String itemType = new String();
@@ -37,15 +40,15 @@ public class Post {
 
 
                 HttpURLConnection con_1 = Set.setPostConnection("http://localhost:8080/user/rating/" + API);
-                con_1.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbHRlcmllc3RhIiwiZXhwIjoxNjIxNTc2MTk1LCJpYXQiOjE2MjEyMTYxOTV9.2Qv5F2hAXkIv_utzUVhfBoCS5btVhCnXe__nlHkJrSI");
-                con_1.setRequestProperty("Cookie", "userid=" + userid);
-                String jsonAction = toJson(userid, action, itemType, rating);
+                con_1.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIxOTU1NjQ2LCJpYXQiOjE2MjE1OTU2NDZ9.kQmfPwoYwje20BwVcYIU9jd__n_R3RCPHxIeBWgNdYg");
+                con_1.setRequestProperty("Cookie", "userId=" + userid);
+                String jsonAction = toJson(userid, item, itemType, rating);
                 System.out.println(action + " " + retailer);
                 Set.doPost(con_1, jsonAction);
             } else if(action.contains("view")) {
                 API = returnItemType(item).getValue();
                 HttpURLConnection con = Set.setGetConnection("http://localhost:8080/api/" + API + "/" + item);
-                con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbHRlcmllc3RhIiwiZXhwIjoxNjIxNTc2MTk1LCJpYXQiOjE2MjEyMTYxOTV9.2Qv5F2hAXkIv_utzUVhfBoCS5btVhCnXe__nlHkJrSI");
+                con.setRequestProperty("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIxOTU1NjQ2LCJpYXQiOjE2MjE1OTU2NDZ9.kQmfPwoYwje20BwVcYIU9jd__n_R3RCPHxIeBWgNdYg");
                 con.setRequestProperty("Cookie", "userId=" + userid);
 
                 System.out.println(action);
@@ -177,15 +180,5 @@ public class Post {
                 "    \"favorite\" : false\n" +
                 "}";
     }
-
-    //            String jsonInputString = "{\n" +
-//                    "    \"event\": \""+ action + "\",\n" +
-//                    "    \"entityType\": \""+ "user" + "\",\n" +
-//                    "    \"entityId\": \""+ userid +"\",\n" +
-//                    "    \"targetEntityType\": \"" + "item" + "\",\n" +
-//                    "    \"targetEntityId\": \""+ item + "\",\n" +
-//                    "    \"properties\": \" { }\",\n" +
-//                    "    \"eventTime\": \""+ LocalDateTime.now()+"Z" + "\"\n" +
-//                    "}";
 
 }

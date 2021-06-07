@@ -1,3 +1,7 @@
+package PCRS;
+
+import PCRS.model.Resource;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,18 +16,18 @@ import java.util.List;
 public class Set {
     public static void main (String []args) throws IOException, ParseException {
 
-        List<String> usernameList = Post.load("D:\\ProjectF\\Utility\\resource\\name.txt");
-        List<String> passwordList = Post.load("D:\\ProjectF\\Utility\\resource\\pass.txt");
-        List<String> itemList = Post.load("D:\\ProjectF\\Utility\\resource\\item_id");
-        List<String> actionList = Post.load("D:\\ProjectF\\Utility\\resource\\action");
-        List<String> categoryList = Post.load("D:\\ProjectF\\Utility\\resource\\category");
+        List<String> usernameList = Post.load("D:\\Utility\\resource\\name.txt");
+        List<String> passwordList = Post.load("D:\\Utility\\resource\\pass.txt");
+        List<String> itemList = Post.load("D:\\Utility\\resource\\item_id");
+        List<String> actionList = Post.load("D:\\Utility\\resource\\action");
+        List<String> categoryList = Post.load("D:\\Utility\\resource\\category");
 
         for(int index = 0 ; index < 563; ++index) {
             String item = itemList.get(index);
             String category = returnCategory(item);
 
             //Change the URL with any other publicly accessible POST resource, which accepts JSON request body
-            HttpURLConnection con = setPostConnection("http://localhost:9090/engines/pcrs/events");
+            HttpURLConnection con = setPostConnection("http://localhost:9090/engines/pcrs_change/events");
 
             //JSON String need to be constructed for the specific resource.
             //We may construct complex JSON using any third-party JSON libraries such as jackson or org.json

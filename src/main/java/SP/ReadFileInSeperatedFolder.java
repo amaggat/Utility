@@ -1,3 +1,5 @@
+package SP;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -7,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReadFileInOneFolder {
+public class ReadFileInSeperatedFolder {
 
     public static void main(String[] args) {
 
@@ -15,6 +17,9 @@ public class ReadFileInOneFolder {
         System.out.print("Dir to Parse: ");
         Scanner input = new Scanner(System.in);
         String dir = input.nextLine();
+
+        System.out.print("Dir to Print: ");
+        String output = input.nextLine();
 
 
         while (true) {
@@ -27,7 +32,7 @@ public class ReadFileInOneFolder {
             String nextLine = scanner.nextLine();
 
             try {
-                File myObj = new File(dir + "\\" + nextLine + ".txt");
+                File myObj = new File(dir + "\\" + nextLine + "\\" + nextLine + ".txt");
                 Scanner myReader = new Scanner(myObj);
                 while (myReader.hasNextLine()) {
                     String line = myReader.nextLine();
@@ -41,7 +46,7 @@ public class ReadFileInOneFolder {
             }
 
             try {
-                FileWriter myWriter = new FileWriter(dir + "\\data" + nextLine + ".txt");
+                FileWriter myWriter = new FileWriter(output + "\\data" + nextLine + ".txt");
                 for (String str : data) {
                     myWriter.write(str.toLowerCase() + "\n");
                 }

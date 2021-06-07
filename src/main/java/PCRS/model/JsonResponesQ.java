@@ -1,3 +1,7 @@
+package PCRS.model;
+
+import PCRS.model.Result;
+
 public class JsonResponesQ {
     private Result result;
 
