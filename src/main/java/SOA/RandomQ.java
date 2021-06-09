@@ -4,7 +4,8 @@ import java.util.*;
 
 public class RandomQ {
 
-    private static List<String> question = new ArrayList<>(Arrays.asList("1.\tSo sánh các phương pháp giao tiếp giữa các tiến trình socket và RPC\n",
+    private static List<String> SOA_QUESTION = new ArrayList<>(Arrays.asList(
+            "1.\tSo sánh các phương pháp giao tiếp giữa các tiến trình socket và RPC\n",
             "2.\tVai trò của IDL trong RPC là gì?\n" ,
             "3.\tVai trò của danh bạ (registry) trong Java RMI là gì?\n" ,
             "4.\tCho ví dụ về một phần tử với một thuộc tính trong XML\n" ,
@@ -25,6 +26,19 @@ public class RandomQ {
             "19.\tESB là gì? Một số chức năng của ESB\n" ,
             "20.\tBPMN là gì? Nêu một số sản phẩm khác có thể thay thế cho Camunda\n"));
 
+    private static List<String> SA_QUESTION = new ArrayList<>(Arrays.asList(
+            "1)\tTại sao kiến trúc phần mềm rất quan trọng?\n",
+            "2)\tMột số các thuộc tính chất lượng và mối quan hệ giữa thuộc tính chất lượng với kiến trúc phần mềm \n" ,
+            "3)\tCác nguyên lý thiết kế SOLID, DRY, KISS, YAGNI\n" ,
+            "4)\tNắm được các mẫu thiết kế: Factory method, Abstract factory, Decorator\n" ,
+            "5)\tMột số kỹ thuật tái cấu trúc (ít nhất 12 kỹ thuật đã làm trong bài tập lớn)\n" ,
+            "6)\tCác bước chính trong thiết kế kiến trúc theo phương pháp ADD và phương pháp của Microsoft\n" ,
+            "7)\tMột số kiểu kiến trúc (theo Microsoft, nắm được ít nhất 4 kiểu)\n" ,
+            "8)\tNắm được tổng quan 10 nguyên lý thiết kế cho ứng dụng (trên Azure)\n" ,
+            "9)\t Khái niệm về vi dịch vụ, ưu và nhược điểm\n" ,
+            "10)\t Một số vấn đề cần quan tâm khi thiết kế ứng dụng theo kiến trúc vi dịch vụ\n"
+    ));
+
 
     public static void main(String[] args) {
 
@@ -32,8 +46,11 @@ public class RandomQ {
             int index = Math.abs(new Random().nextInt())%20;
             Scanner sc = new Scanner(System.in);
             String request = sc.next();
-            if(request.equals("new")){
-                System.out.println(question.get(index));
+            if(request.equals("soa")){
+                System.out.println(SOA_QUESTION.get(index));
+            }
+            if(request.equals("sa")){
+                System.out.println(SA_QUESTION.get(index));
             }
         }
     }
