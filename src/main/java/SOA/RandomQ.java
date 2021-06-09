@@ -41,15 +41,16 @@ public class RandomQ {
 
 
     public static void main(String[] args) {
-
         while (true) {
-            int index = Math.abs(new Random().nextInt())%20;
+            int index;
             Scanner sc = new Scanner(System.in);
             String request = sc.next();
             if(request.equals("soa")){
+                index = Math.abs(new Random().nextInt())%20;
                 System.out.println(SOA_QUESTION.get(index));
             }
             if(request.equals("sa")){
+                index = Math.abs(new Random().nextInt())%10;
                 System.out.println(SA_QUESTION.get(index));
             }
         }
